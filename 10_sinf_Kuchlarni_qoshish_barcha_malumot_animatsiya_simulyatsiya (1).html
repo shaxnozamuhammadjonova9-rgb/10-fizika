@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10-sinf Fizika — Kuchlarni qo‘shish</title>
+<style>
+:root{
+ --blue:#2563EB;--dark:#1E3A8A;--red:#EF4444;--green:#22C55E;
+ --purple:#8B5CF6;--orange:#F97316;--gray:#D1D5DB;--bg:#F5F7FB;
+}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#172033;line-height:1.55}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:30px 18px;text-align:center}
+header h1{margin:0;font-size:32px} header p{margin:8px 0 0}
+nav{position:sticky;top:0;z-index:5;background:white;padding:10px;display:flex;gap:8px;overflow:auto;box-shadow:0 2px 10px #0001}
+nav a{padding:9px 13px;border-radius:20px;background:#eef2ff;color:#1e3a8a;text-decoration:none;white-space:nowrap;font-weight:bold}
+main{max-width:1100px;margin:auto;padding:18px}
+section,.card{background:white;border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 3px 15px #00000012}
+h2{color:var(--dark);border-left:6px solid var(--blue);padding-left:12px}
+h3{color:#24406f}.formula{background:#eef4ff;border-left:5px solid var(--blue);padding:13px;border-radius:10px;font-size:20px;font-weight:bold;margin:12px 0}
+.note{background:#fff7ed;border-left:5px solid var(--orange);padding:12px;border-radius:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+.badge{display:inline-block;padding:5px 10px;border-radius:15px;background:#eef2ff;margin:3px}
+.legend span{display:inline-block;margin:5px;padding:7px 11px;border-radius:8px;color:white;font-weight:bold}
+.obj{color:white;background:var(--blue)} .f1{background:var(--red)} .f2{background:var(--green)}
+.fr{background:var(--orange)} .fp{background:var(--purple)}
+.sim{border:2px solid #dbe4f0;border-radius:16px;padding:15px;background:#fbfdff}
+canvas{width:100%;height:300px;border-radius:12px;background:white;border:1px solid #e5e7eb}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+button{border:0;border-radius:10px;padding:10px 15px;background:#2563eb;color:white;font-weight:bold;cursor:pointer}
+button.alt{background:#64748b} input[type=range]{width:220px}
+.result{font-size:20px;font-weight:bold;color:#1e3a8a}
+table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:10px;border:1px solid #dbe2ea;text-align:left}th{background:#eef4ff}
+.question{padding:13px;border:1px solid #dbe2ea;border-radius:10px;margin:10px 0}
+.correct{background:#dcfce7}.wrong{background:#fee2e2}
+footer{text-align:center;padding:25px;color:#64748b}
+.small{font-size:14px;color:#64748b}
+</style>
+</head>
+<body>
+<header>
+<h1>10-SINF FIZIKA</h1>
+<p><b>Mavzu: KUCHLARNI QO‘SHISH</b></p>
+<p>Nazariya • formulalar • chizmalar • animatsiyalar • interaktiv simulyatsiyalar • masalalar • test</p>
+</header>
+
+<nav>
+<a href="#kirish">Kirish</a><a href="#reja1">1-reja</a><a href="#reja2">2-reja</a>
+<a href="#reja3">3-reja</a><a href="#masalalar">Masalalar</a><a href="#test">Test</a>
+</nav>
+
+<main>
+<section id="kirish">
+<h2>Mavzu haqida umumiy ma’lumot</h2>
+<p><b>Kuch</b> — jismlarning o‘zaro ta’sirini ifodalovchi fizik kattalik. Kuch jismning tezligini, harakat yo‘nalishini yoki shaklini o‘zgartirishi mumkin.</p>
+<div class="grid">
+<div class="card"><b>Belgisi:</b> F</div>
+<div class="card"><b>SI birligi:</b> Nyuton (N)</div>
+<div class="card"><b>Tabiati:</b> vektor kattalik</div>
+<div class="card"><b>Natijaviy kuch:</b> barcha kuchlarning vektor yig‘indisi</div>
+</div>
+<div class="formula">F⃗<sub>nat</sub> = F⃗<sub>1</sub> + F⃗<sub>2</sub> + F⃗<sub>3</sub> + …</div>
+<h3>Animatsiya ranglari</h3>
+<div class="legend">
+<span class="f1">F₁ — qizil</span><span class="f2">F₂ — yashil</span>
+<span class="fr">F<sub>nat</sub> — to‘q sariq</span><span class="fp">yo‘nalish/burchak — binafsha</span>
+<span class="obj">jism — ko‘k</span>
+</div>
+<p class="note"><b>Eslab qoling:</b> Kuchlarni oddiy sonlar kabi emas, ularning yo‘nalishini hisobga olgan holda qo‘shamiz.</p>
+</section>
+
+<section id="reja1">
+<h2>1-REJA. Muvozanatlashgan kuchlar</h2>
+<h3>Ta’rif</h3>
+<p>Jismga ta’sir qilayotgan kuchlarning vektor yig‘indisi nolga teng bo‘lsa, kuchlar <b>muvozanatlashgan</b> deyiladi.</p>
+<div class="formula">F<sub>nat</sub> = 0</div>
+<p>Qarama-qarshi yo‘nalgan ikki kuch teng bo‘lsa:</p>
+<div class="formula">F<sub>nat</sub> = |F₁ − F₂| = 0, agar F₁ = F₂</div>
+<p>Natijaviy kuch nol bo‘lsa, jism tinch turgan bo‘lsa tinch qoladi; harakatlanayotgan bo‘lsa, ideal sharoitda tezligini o‘zgartirmaydi.</p>
+
+<div class="sim">
+<h3>🎬 Simulyatsiya: Muvozanatlashgan kuchlar</h3>
+<canvas id="c1"></canvas>
+<div class="controls"><button onclick="play(1)">▶ Play</button><button class="alt" onclick="pause(1)">⏸ Pause</button><button class="alt" onclick="resetSim(1)">↺ Reset</button>
+<span class="result">F₁ = 50 N | F₂ = 50 N | F<sub>nat</sub> = 0 N</span></div>
+<p class="small">Qizil F₁ o‘ngga, yashil F₂ chapga yo‘nalgan. Kuchlar teng bo‘lgani uchun jismning tezligi o‘zgarmaydi.</p>
+</div>
+
+<h3>Hayotiy misollar</h3>
+<ul><li>Stol ustidagi kitob: og‘irlik kuchi pastga, tayanch reaksiyasi yuqoriga.</li>
+<li>Devorga osilgan rasm: qarama-qarshi kuchlar muvozanatlashadi.</li>
+<li>Tekis va o‘zgarmas tezlikda harakatlanayotgan jismda natijaviy kuch nol bo‘lishi mumkin.</li></ul>
+</section>
+
+<section id="reja2">
+<h2>2-REJA. Muvozanatlashmagan kuchlar</h2>
+<h3>Ta’rif</h3>
+<p>Natijaviy kuch nolga teng bo‘lmasa, kuchlar <b>muvozanatlashmagan</b> deyiladi. Bunday holatda jismning tezligi yoki harakat yo‘nalishi o‘zgarishi mumkin.</p>
+<div class="formula">Qarama-qarshi yo‘nalish: F<sub>nat</sub> = |F₁ − F₂|</div>
+<div class="formula">Bir xil yo‘nalish: F<sub>nat</sub> = F₁ + F₂</div>
+<div class="formula">Nyutonning II qonuni: F<sub>nat</sub> = ma</div>
+
+<div class="sim">
+<h3>🎬 Simulyatsiya: Muvozanatlashmagan kuchlar</h3>
+<canvas id="c2"></canvas>
+<div class="controls"><button onclick="play(2)">▶ Play</button><button class="alt" onclick="pause(2)">⏸ Pause</button><button class="alt" onclick="resetSim(2)">↺ Reset</button>
+<span class="result">F₁ = 30 N | F₂ = 10 N | F<sub>nat</sub> = 20 N</span></div>
+<p class="small">Natijaviy kuch o‘ngga yo‘nalgan. Shuning uchun jism o‘ng tomonga tezlanadi.</p>
+</div>
+
+<h3>Hayotiy misollar</h3>
+<ul><li>Arqonni ikki tomon turli kuch bilan tortsa, arqon kuchliroq tomon yo‘nalishida siljiydi.</li>
+<li>Avtomobil tezlanayotganda tortuvchi kuch qarshilik kuchidan katta bo‘lishi mumkin.</li>
+<li>To‘p tepalganda unga qisqa vaqt davomida katta kuch ta’sir qiladi va tezligi o‘zgaradi.</li></ul>
+</section>
+
+<section id="reja3">
+<h2>3-REJA. Teng ta’sir etuvchi kuch va kuchning tashkil etuvchilari</h2>
+<h3>Teng ta’sir etuvchi (natijaviy) kuch</h3>
+<p>Bir nechta kuchning jismga ta’sirini bitta kuch bilan almashtirish mumkin. Shu kuch <b>teng ta’sir etuvchi yoki natijaviy kuch</b> deyiladi.</p>
+<div class="formula">F⃗<sub>nat</sub> = ΣF⃗</div>
+
+<h3>Perpendikulyar tashkil etuvchilar</h3>
+<p>Agar kuchning o‘zaro perpendikulyar tashkil etuvchilari Fₓ va Fᵧ bo‘lsa:</p>
+<div class="formula">F<sub>nat</sub> = √(Fₓ² + Fᵧ²)</div>
+<div class="formula">tan θ = Fᵧ / Fₓ</div>
+<p>Bu yerda θ — natijaviy kuchning gorizontal yo‘nalish bilan hosil qilgan burchagi.</p>
+
+<div class="sim">
+<h3>🎬 Interaktiv simulyatsiya: Tashkil etuvchilar</h3>
+<canvas id="c3"></canvas>
+<div class="controls">
+<label>Fₓ: <input id="fx" type="range" min="0" max="120" value="60" oninput="draw3()"></label>
+<b id="fxv">60</b> N
+<label>Fᵧ: <input id="fy" type="range" min="0" max="120" value="80" oninput="draw3()"></label>
+<b id="fyv">80</b> N
+</div>
+<div class="result">F<sub>nat</sub> = <span id="frv">100</span> N | θ = <span id="ang">53.1</span>°</div>
+<div class="controls"><button onclick="play(3)">▶ Play</button><button class="alt" onclick="pause(3)">⏸ Pause</button><button class="alt" onclick="resetSim(3)">↺ Reset</button></div>
+</div>
+
+<h3>Kuchlarni qo‘shish usullari</h3>
+<div class="grid">
+<div class="card"><b>Uchburchak usuli:</b> birinchi vektorning oxiriga ikkinchi vektorning boshini qo‘yiladi. Birinchi boshidan oxirgi uchigacha bo‘lgan vektor natijaviy kuchdir.</div>
+<div class="card"><b>Parallelogramm usuli:</b> ikki vektor bir nuqtadan chiqarilib, parallelogramm hosil qilinadi. Diagonal natijaviy kuchni beradi.</div>
+</div>
+</section>
+
+<section id="masalalar">
+<h2>Masalalar va yechimlar</h2>
+<div class="question"><b>1-masala.</b> Jismga qarama-qarshi yo‘nalishda 60 N va 60 N kuch ta’sir qilmoqda.<br>
+<b>Yechim:</b> F<sub>nat</sub> = |60 − 60| = <b>0 N</b>. Kuchlar muvozanatlashgan.</div>
+<div class="question"><b>2-masala.</b> Qarama-qarshi yo‘nalishda 40 N va 15 N kuchlar ta’sir qilmoqda.<br>
+<b>Yechim:</b> F<sub>nat</sub> = |40 − 15| = <b>25 N</b>. Yo‘nalish 40 N kuch tomonga.</div>
+<div class="question"><b>3-masala.</b> Bir yo‘nalishda 20 N va 35 N kuchlar ta’sir qilmoqda.<br>
+<b>Yechim:</b> F<sub>nat</sub> = 20 + 35 = <b>55 N</b>.</div>
+<div class="question"><b>4-masala.</b> Fₓ = 12 N, Fᵧ = 5 N. Natijaviy kuchni toping.<br>
+<b>Yechim:</b> F = √(12² + 5²) = √169 = <b>13 N</b>.</div>
+<div class="question"><b>5-masala.</b> Fₓ = 8 N, Fᵧ = 6 N.<br>
+<b>Yechim:</b> F = √(8² + 6²) = √100 = <b>10 N</b>.</div>
+
+<h3>Asosiy formulalar jadvali</h3>
+<table><tr><th>Holat</th><th>Formula</th><th>Misol</th></tr>
+<tr><td>Teng, qarama-qarshi kuchlar</td><td>F<sub>nat</sub>=|F₁−F₂|</td><td>50−50=0 N</td></tr>
+<tr><td>Turli, qarama-qarshi kuchlar</td><td>F<sub>nat</sub>=|F₁−F₂|</td><td>30−10=20 N</td></tr>
+<tr><td>Bir xil yo‘nalish</td><td>F<sub>nat</sub>=F₁+F₂</td><td>20+35=55 N</td></tr>
+<tr><td>Perpendikulyar kuchlar</td><td>F=√(Fₓ²+Fᵧ²)</td><td>12, 5 → 13 N</td></tr>
+<tr><td>Nyuton II qonuni</td><td>F<sub>nat</sub>=ma</td><td>F ortsa, a ham ortadi</td></tr>
+</table>
+</section>
+
+<section id="test">
+<h2>Interaktiv test</h2>
+<div id="quiz"></div>
+<button onclick="checkQuiz()">Natijani tekshirish</button>
+<p id="score" class="result"></p>
+</section>
+
+<section>
+<h2>Darsni yakunlash — asosiy xulosalar</h2>
+<ol>
+<li>Kuch — vektor kattalik va SI birligi Nyuton (N).</li>
+<li>Natijaviy kuch barcha kuchlarning vektor yig‘indisidir.</li>
+<li>F<sub>nat</sub>=0 bo‘lsa, kuchlar muvozanatlashgan.</li>
+<li>F<sub>nat</sub>≠0 bo‘lsa, kuchlar muvozanatlashmagan va jism tezlanishi mumkin.</li>
+<li>Perpendikulyar tashkil etuvchilar uchun Pifagor teoremasidan foydalaniladi.</li>
+<li>Natijaviy kuch yo‘nalishi jismning tezlanish yo‘nalishini belgilaydi.</li>
+</ol>
+<div class="note"><b>Uyga vazifa:</b> kundalik hayotdan kuchlar qo‘shilishiga 5 ta misol toping, har birida kuchlarning yo‘nalishini chizma orqali ko‘rsating va natijaviy kuchni aniqlang.</div>
+</section>
+</main>
+<footer>10-sinf Fizika | “Kuchlarni qo‘shish” | Interaktiv HTML dars materiali</footer>
+
+<script>
+const states={1:{x:0,v:0,run:false},2:{x:0,v:0,run:false},3:{run:false,t:0}};
+function ctx(id){return document.getElementById(id).getContext('2d')}
+function setup(c){c.width=c.clientWidth*devicePixelRatio;c.height=300*devicePixelRatio;let x=c.getContext('2d');x.scale(devicePixelRatio,devicePixelRatio);return x}
+function arrow(x,y,x2,y2,color,label){
+ let a=Math.atan2(y2-y,x2-x), L=10; x2-=0; 
+ ctxx.strokeStyle=color;ctxx.fillStyle=color;ctxx.lineWidth=4;ctxx.beginPath();ctxx.moveTo(x,y);ctxx.lineTo(x2,y2);ctxx.stroke();
+ ctxx.beginPath();ctxx.moveTo(x2,y2);ctxx.lineTo(x2-L*Math.cos(a-.5),y2-L*Math.sin(a-.5));ctxx.lineTo(x2-L*Math.cos(a+.5),y2-L*Math.sin(a+.5));ctxx.closePath();ctxx.fill();
+ ctxx.font='bold 15px Arial';ctxx.fillText(label,(x+x2)/2+5,(y+y2)/2-8);
+}
+let ctxx;
+function base(c,x){
+ ctxx=setup(c);ctxx.clearRect(0,0,c.clientWidth,300);
+ ctxx.strokeStyle='#D1D5DB';ctxx.lineWidth=2;ctxx.beginPath();ctxx.moveTo(25,225);ctxx.lineTo(c.clientWidth-25,225);ctxx.stroke();
+ ctxx.fillStyle='#2563EB';ctxx.strokeStyle='#1E3A8A';ctxx.lineWidth=3;ctxx.beginPath();ctxx.roundRect(x-40,185,80,40,8);ctxx.fill();ctxx.stroke();
+}
+function draw1(){
+ let c=document.getElementById('c1'),s=states[1];base(c, c.clientWidth/2+s.x);
+ arrow(c.clientWidth/2+s.x,205,c.clientWidth/2+s.x+110,205,'#EF4444','F₁ = 50 N');
+ arrow(c.clientWidth/2+s.x,170,c.clientWidth/2+s.x-110,170,'#22C55E','F₂ = 50 N');
+ ctxx.fillStyle='#F97316';ctxx.font='bold 17px Arial';ctxx.fillText('Fnat = 0 N',20,35);
+}
+function draw2(){
+ let c=document.getElementById('c2'),s=states[2];base(c, c.clientWidth/2+s.x);
+ arrow(c.clientWidth/2+s.x,205,c.clientWidth/2+s.x+120,205,'#EF4444','F₁ = 30 N');
+ arrow(c.clientWidth/2+s.x,170,c.clientWidth/2+s.x-45,170,'#22C55E','F₂ = 10 N');
+ arrow(c.clientWidth/2+s.x,240,c.clientWidth/2+s.x+75,240,'#F97316','Fnat = 20 N');
+}
+function draw3(){
+ let c=document.getElementById('c3');let x=+document.getElementById('fx').value,y=+document.getElementById('fy').value;
+ document.getElementById('fxv').textContent=x;document.getElementById('fyv').textContent=y;
+ let r=Math.hypot(x,y),a=Math.atan2(y,x)*180/Math.PI;document.getElementById('frv').textContent=r.toFixed(1);document.getElementById('ang').textContent=a.toFixed(1);
+ base(c,c.clientWidth/2);let ox=c.clientWidth/2,oy=205,scale=1.35;
+ arrow(ox,oy,ox+x*scale,oy,'#EF4444','Fx');
+ arrow(ox+x*scale,oy,ox+x*scale,oy-y*scale,'#22C55E','Fy');
+ arrow(ox,oy,ox+x*scale,oy-y*scale,'#F97316','Fnat');
+ ctxx.setLineDash([6,6]);ctxx.strokeStyle='#8B5CF6';ctxx.beginPath();ctxx.moveTo(ox+x*scale,oy);ctxx.lineTo(ox+x*scale,oy-y*scale);ctxx.stroke();ctxx.setLineDash([]);
+}
+function play(n){states[n].run=true}
+function pause(n){states[n].run=false}
+function resetSim(n){states[n]={x:0,v:0,run:false};if(n==1)draw1();if(n==2)draw2();if(n==3){document.getElementById('fx').value=60;document.getElementById('fy').value=80;draw3()}}
+function animate(){
+ let s=states[1];if(s.run){s.x=0;draw1()}
+ s=states[2];if(s.run){s.v+=.08;s.x+=s.v;if(s.x>170){s.x=-170;s.v=0}draw2()}
+ s=states[3];if(s.run){s.t+=.04;let x=60+30*Math.sin(s.t),y=80+20*Math.cos(s.t);document.getElementById('fx').value=x;document.getElementById('fy').value=y;draw3()}
+ requestAnimationFrame(animate)
+}
+window.addEventListener('resize',()=>{draw1();draw2();draw3()});
+draw1();draw2();draw3();animate();
+
+const qs=[
+['1. Kuchning SI birligi qaysi?',['Joul','Nyuton','Vatt','Paskal'],1],
+['2. 50 N va 50 N qarama-qarshi yo‘nalgan bo‘lsa, Fnat nechaga teng?',['0 N','50 N','100 N','25 N'],0],
+['3. 30 N va 10 N qarama-qarshi yo‘nalgan bo‘lsa, Fnat?',['40 N','20 N','10 N','3 N'],1],
+['4. Muvozanatlashmagan kuchlarda natijaviy kuch qanday?',['Har doim 0','0 dan farqli','Har doim 1 N','Aniqlab bo‘lmaydi'],1],
+['5. Fx=12 N, Fy=5 N bo‘lsa, Fnat?',['7 N','13 N','17 N','60 N'],1]
+];
+let qbox=document.getElementById('quiz');
+qs.forEach((q,i)=>{let d=document.createElement('div');d.className='question';d.innerHTML='<b>'+q[0]+'</b>'+q[1].map((o,j)=>`<label style="display:block"><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('');qbox.appendChild(d)});
+function checkQuiz(){
+ let score=0;qs.forEach((q,i)=>{let a=document.querySelector(`input[name=q${i}]:checked`);if(a&&+a.value===q[2])score++});
+ document.getElementById('score').textContent=`Natija: ${score} / ${qs.length}`;
+}
+</script>
+</body>
+</html>
