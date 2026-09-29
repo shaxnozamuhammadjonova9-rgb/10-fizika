@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10-sinf Fizika — Markazga intilma kuch</title>
+<style>
+:root{--blue:#2563EB;--dark:#1E3A8A;--red:#EF4444;--green:#16A34A;--orange:#F97316;--purple:#8B5CF6;--bg:#F5F7FB}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#172033;line-height:1.6}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:28px 16px;text-align:center}header h1{margin:0;font-size:clamp(25px,5vw,36px)}
+nav{position:sticky;top:0;z-index:5;background:white;padding:10px;display:flex;gap:8px;overflow:auto;box-shadow:0 2px 10px #0001}
+nav a{padding:9px 13px;border-radius:20px;background:#eef2ff;color:#1e3a8a;text-decoration:none;white-space:nowrap;font-weight:bold}
+main{max-width:1100px;margin:auto;padding:16px}section,.card{background:white;border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 3px 15px #00000012}
+h2{color:var(--dark);border-left:6px solid var(--blue);padding-left:12px}h3{color:#24406f}
+.formula{background:#eef4ff;border-left:5px solid var(--blue);padding:12px;border-radius:10px;font-size:20px;font-weight:bold;margin:12px 0}
+.note{background:#fff7ed;border-left:5px solid var(--orange);padding:12px;border-radius:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.sim{border:2px solid #dbe4f0;border-radius:15px;padding:14px;background:#fbfdff;margin:15px 0}
+canvas{width:100%;height:300px;border-radius:10px;background:white;border:1px solid #e5e7eb;display:block}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:12px 0}
+button{border:0;border-radius:9px;padding:10px 15px;background:#2563eb;color:white;font-weight:bold;cursor:pointer}
+button.alt{background:#64748b}input[type=range]{width:170px;max-width:45vw}
+.result{font-size:19px;font-weight:bold;color:#1e3a8a}
+table{width:100%;border-collapse:collapse;margin:12px 0}th,td{padding:10px;border:1px solid #dbe2ea;text-align:left}th{background:#eef4ff}
+.question{padding:13px;border:1px solid #dbe2ea;border-radius:10px;margin:10px 0}
+.small{font-size:14px;color:#64748b}.legend span{display:inline-block;margin:4px;padding:6px 10px;border-radius:8px;color:white;font-weight:bold}
+footer{text-align:center;padding:24px;color:#64748b}
+@media(max-width:600px){section{padding:15px}canvas{height:260px}table{font-size:14px}}
+</style>
+</head>
+<body>
+<header><h1>10-SINF FIZIKA</h1><p><b>Mavzu: MARKAZGA INTILMA KUCH</b></p><p>Nazariya • formulalar • chizmalar • animatsiyalar • interaktiv simulyatsiyalar • masalalar • test</p></header>
+<nav><a href="#kirish">Kirish</a><a href="#reja1">1-reja</a><a href="#reja2">2-reja</a><a href="#reja3">3-reja</a><a href="#masalalar">Masalalar</a><a href="#test">Test</a></nav>
+<main>
+<section id="kirish">
+<h2>Mavzu haqida umumiy ma’lumot</h2>
+<p><b>Markazga intilma kuch</b> — jismni aylana bo‘ylab harakatlantirish uchun zarur bo‘lgan, aylana markaziga yo‘nalgan natijaviy kuchdir. U alohida yangi turdagi kuch emas: vaziyatga qarab ip tarangligi, ishqalanish, tortishish yoki tayanch kuchining markazga yo‘nalgan tashkil etuvchisi markazga intilma kuch vazifasini bajaradi.</p>
+<div class="grid"><div class="card"><b>Tezlanish:</b> a<sub>m</sub></div><div class="card"><b>Kuch:</b> F<sub>m</sub></div><div class="card"><b>Yo‘nalish:</b> aylana markaziga</div><div class="card"><b>O‘lchov birligi:</b> N</div></div>
+<div class="formula">a<sub>m</sub> = v²/R &nbsp;&nbsp; | &nbsp;&nbsp; F<sub>m</sub> = mv²/R = mω²R</div>
+<div class="legend"><span style="background:#2563EB">Jism — ko‘k</span><span style="background:#EF4444">Tezlik — qizil</span><span style="background:#16A34A">Markazga intilma kuch — yashil</span><span style="background:#8B5CF6">Radius — binafsha</span></div>
+<div class="note"><b>Eslab qoling:</b> aylana bo‘ylab tekis harakatda tezlikning moduli o‘zgarmasligi mumkin, ammo uning yo‘nalishi o‘zgaradi. Shu sababli markazga intilma tezlanish mavjud.</div>
+</section>
+
+<section>
+<h2>Dars maqsadlari</h2>
+<h3>Ta’limiy maqsad</h3><p>O‘quvchilarga aylana bo‘ylab harakatda tezlik, markazga intilma tezlanish va kuchning fizik mohiyatini, ipga mahkamlangan sharning harakatini hamda markazdan qochma kuch tushunchasini o‘rgatish.</p>
+<h3>Rivojlantiruvchi maqsad</h3><p>Fizik hodisalarni kuzatish, kuch vektorlarini tahlil qilish, formulalar bilan hisoblash, simulyatsiya natijalaridan xulosa chiqarish ko‘nikmalarini rivojlantirish.</p>
+<h3>Tarbiyaviy maqsad</h3><p>Ilmiy dunyoqarash, aniqlik, hamkorlik va texnika xavfsizligiga rioya qilish madaniyatini shakllantirish.</p>
+<h3>Amaliy maqsad</h3><p>O‘quvchilar markazga intilma kuchni hisoblaydi, uning yo‘nalishini chizmada ko‘rsatadi va kundalik hayotdagi aylana bo‘ylab harakat hodisalarini izohlaydi.</p>
+<h3>Kutiladigan natijalar</h3><ul><li>Markazga intilma tezlanish va kuch formulalarini ayta oladi.</li><li>Tezlik urinma bo‘ylab, markazga intilma kuch markaz tomon yo‘nalishini ko‘rsatadi.</li><li>Ip uzilganda shar urinma yo‘nalishda ketishini tushuntiradi.</li><li>Markazdan qochma kuchni aylanuvchi sanoq sistemasidagi inersiya kuchi sifatida farqlaydi.</li></ul>
+</section>
+
+<section id="reja1">
+<h2>1-REJA. Aylana bo‘ylab harakatda kuchlar</h2>
+<p>Aylana bo‘ylab harakatda jismning tezlik vektori aylana urinmasi bo‘ylab yo‘naladi. Tezlikning yo‘nalishi o‘zgarayotgani sababli jism markazga qaragan tezlanishga ega bo‘ladi.</p>
+<h3>Asosiy formulalar</h3>
+<div class="formula">a<sub>m</sub> = v²/R</div><div class="formula">F<sub>m</sub> = m·a<sub>m</sub> = mv²/R</div><div class="formula">v = ωR &nbsp; → &nbsp; F<sub>m</sub> = mω²R</div><div class="formula">v = 2πR/T = 2πRf</div>
+<table><tr><th>Belgi</th><th>Ma’nosi</th><th>Birligi</th></tr><tr><td>m</td><td>Jism massasi</td><td>kg</td></tr><tr><td>v</td><td>Chiziqli tezlik</td><td>m/s</td></tr><tr><td>R</td><td>Aylana radiusi</td><td>m</td></tr><tr><td>ω</td><td>Burchak tezlik</td><td>rad/s</td></tr><tr><td>T</td><td>Aylanish davri</td><td>s</td></tr><tr><td>f</td><td>Chastota</td><td>Hz</td></tr><tr><td>F<sub>m</sub></td><td>Markazga intilma kuch</td><td>N</td></tr></table>
+<h3>Hayotiy misollar</h3><ul><li>Avtomobil burilganda yo‘l bilan shina orasidagi ishqalanish markazga intilma kuchni ta’minlaydi.</li><li>Sun’iy yo‘ldosh orbitasida Yerning tortishish kuchi markazga intilma kuch vazifasini bajaradi.</li><li>Ipga bog‘langan shar aylantirilganda ip tarangligi markazga yo‘naladi.</li></ul>
+<div class="sim"><h3>🎬 Interaktiv simulyatsiya: Aylana bo‘ylab harakat</h3><canvas id="orbit"></canvas>
+<div class="controls"><label>Tezlik v: <input id="speed" type="range" min="1" max="10" value="5"></label><b id="speedVal">5 m/s</b><label>Radius R: <input id="radius" type="range" min="40" max="120" value="80"></label><b id="radiusVal">2 m</b><label>Massa m: <input id="mass" type="range" min="1" max="10" value="2"></label><b id="massVal">2 kg</b></div>
+<div class="result" id="orbitResult"></div><div class="controls"><button onclick="toggleOrbit()">▶/⏸ Harakat</button><button class="alt" onclick="resetOrbit()">↺ Qayta boshlash</button></div><p class="small">Qizil strelka — tezlik (urinma bo‘ylab), yashil strelka — markazga intilma kuch (markazga qarab).</p></div>
+</section>
+
+<section id="reja2">
+<h2>2-REJA. Ipga mahkamlangan sharning aylana bo‘ylab harakati. Markazdan qochma kuch</h2>
+<h3>Ipga mahkamlangan shar</h3><p>Shar ip yordamida aylantirilganda ipning taranglik kuchi markaz tomon yo‘naladi. Agar gorizontal aylana bo‘ylab harakatda boshqa radial kuchlar hisobga olinmasa, taranglik kuchi markazga intilma kuchni ta’minlaydi.</p>
+<div class="formula">T = mv²/R</div>
+<p>Shar harakatlanayotganda tezlik vektori urinma bo‘ylab, ip tarangligi esa aylana markazi tomon yo‘naladi. Ip uzilganda markazga intilma kuch yo‘qoladi va shar shu ondagi tezlik yo‘nalishi — urinma bo‘ylab harakatini davom ettiradi.</p>
+<h3>Markazdan qochma kuch</h3><p>Markazdan qochma kuch aylanuvchi sanoq sistemasida kuzatiladigan tashqi tomonga yo‘nalgan inersiya kuchidir. Tashqi, inersial sanoq sistemasida sharni aylana bo‘ylab ushlab turgan haqiqiy radial kuch markaz tomon yo‘naladi. Bu ikki kuchni bir-biriga үйлдэл-эсрэг хос хүч гэж tushunmaslik kerak, chunki ular turli sanoq sistemalarida ko‘rib chiqiladi.</p>
+<table><tr><th>Taqqoslash</th><th>Markazga intilma kuch</th><th>Markazdan qochma kuch</th></tr><tr><td>Yo‘nalish</td><td>Aylana markaziga</td><td>Markazdan tashqariga</td></tr><tr><td>Qayerda qaraladi?</td><td>Inersial sanoq sistemasida natijaviy radial kuch</td><td>Aylanuvchi, noinersial sanoq sistemasida inersiya kuchi</td></tr><tr><td>Vazifasi</td><td>Trayektoriyani egri qiladi</td><td>Aylanuvchi tizimda jismning tashqariga intilayotgandek ko‘rinishini izohlaydi</td></tr></table>
+<div class="sim"><h3>🎬 Simulyatsiya: Ipga mahkamlangan shar</h3><canvas id="ball"></canvas><div class="controls"><label>Tezlik: <input id="ballSpeed" type="range" min="1" max="8" value="4"></label><b id="ballSpeedVal">4</b><label>Radius: <input id="ballRadius" type="range" min="50" max="115" value="85"></label><b id="ballRadiusVal">85 px</b></div>
+<div class="result" id="ballResult"></div><div class="controls"><button onclick="toggleBall()">▶/⏸ Aylantirish</button><button onclick="cutString()">✂ Ipni uzish</button><button class="alt" onclick="resetBall()">↺ Qayta boshlash</button></div><p class="small">Yashil strelka — ip tarangligi/markazga intilma kuch, qizil — tezlik. Ip uzilgach, shar urinma yo‘nalishda ketadi.</p></div>
+</section>
+
+<section id="reja3">
+<h2>3-REJA. Turmushda va texnikada markazga intilma hamda markazdan qochma kuchlar</h2>
+<div class="grid">
+<div class="card"><h3>1. Avtomobil burilishi</h3><p>Shina va yo‘l orasidagi ishqalanish avtomobilni burilish trayektoriyasida ushlab turuvchi markazga intilma kuchni ta’minlaydi.</p></div>
+<div class="card"><h3>2. Velosiped burilishi</h3><p>Velosipedchi burilishda muvozanatni saqlash uchun egiladi; kuchlar va tayanch reaksiyasi birgalikda harakatni ta’minlaydi.</p></div>
+<div class="card"><h3>3. Kir yuvish mashinasi</h3><p>Baraban tez aylanganda suv teshiklardan tashqariga chiqadi. Aylanuvchi baraban bilan bog‘liq sanoq sistemasida bu holat markazdan qochma ta’sir orqali izohlanadi.</p></div>
+<div class="card"><h3>4. Aylanma attraksion</h3><p>O‘rindiq yoki tayanch kuchlarining radial tashkil etuvchisi odamni aylana bo‘ylab harakatlantiradi.</p></div>
+<div class="card"><h3>5. Sun’iy yo‘ldosh</h3><p>Yerning tortishish kuchi yo‘ldosh orbitasidagi markazga intilma kuch vazifasini bajaradi.</p></div>
+<div class="card"><h3>6. Aylanayotgan chelakdagi suv</h3><p>Chelak yetarli tezlikda vertikal aylantirilganda, yuqori nuqtada ham suv idish ichida qolishi mumkin, chunki unga markaz tomon yo‘nalgan natijaviy kuch kerak bo‘ladi.</p></div>
+<div class="card"><h3>7. Burilish yo‘li</h3><p>Tekis, gorizontal yo‘lda avtomobilning markazga intilma kuchini asosan ishqalanish ta’minlaydi. Tezlik ortishi bilan kerakli kuch v² ga mutanosib ortadi.</p></div>
+<div class="card"><h3>8. Sentrifuga</h3><p>Aylanish orqali aralashmadagi qismlar ajratiladi; aylanuvchi tizimda markazdan qochma ta’sir bilan izohlanadigan jarayonlar kuzatiladi.</p></div>
+</div>
+<div class="note"><b>Asosiy fikr:</b> markazga intilma kuch alohida kuch turi emas — u aylana bo‘ylab harakatni yuzaga keltiruvchi natijaviy kuchning markazga yo‘nalgan qismidir.</div>
+</section>
+
+<section id="masalalar">
+<h2>Masalalar va yechimlar</h2>
+<div class="question"><b>1-masala.</b> Massasi 2 kg bo‘lgan jism radiusi 4 m aylana bo‘ylab 6 m/s tezlik bilan harakatlanadi. Markazga intilma kuchni toping.<br><b>Berilgan:</b> m=2 kg, R=4 m, v=6 m/s.<br><b>Formula:</b> F=mv²/R.<br><b>Hisoblash:</b> F=2·36/4=18 N.<br><b>Javob:</b> 18 N.</div>
+<div class="question"><b>2-masala.</b> 0,5 kg massali jism 2 m radiusli aylana bo‘ylab 4 m/s tezlikda harakatlanadi. Tezlanishni toping.<br><b>Formula:</b> a=v²/R=16/2=8 m/s².<br><b>Javob:</b> 8 m/s².</div>
+<div class="question"><b>3-masala.</b> 3 kg massali jismga 60 N markazga intilma kuch ta’sir qiladi. Radius 5 m bo‘lsa, tezligini toping.<br><b>Formula:</b> v=√(FR/m)=√(60·5/3)=10 m/s.<br><b>Javob:</b> 10 m/s.</div>
+<div class="question"><b>4-masala.</b> Radiusi 2 m, davri 4 s bo‘lgan aylana bo‘ylab harakatning chiziqli tezligini toping.<br><b>Formula:</b> v=2πR/T=4π/4=π≈3,14 m/s.<br><b>Javob:</b> 3,14 m/s.</div>
+<div class="question"><b>5-masala.</b> 1,5 kg massali jism 3 m radiusda ω=2 rad/s burchak tezlik bilan aylanadi. Kuchni toping.<br><b>Formula:</b> F=mω²R=1,5·4·3=18 N.<br><b>Javob:</b> 18 N.</div>
+<div class="question"><b>6-masala.</b> Jism 5 m/s tezlikda 10 m radiusli aylana bo‘ylab harakatlanadi. Markazga intilma tezlanishni toping.<br><b>Formula:</b> a=v²/R=25/10=2,5 m/s².<br><b>Javob:</b> 2,5 m/s².</div>
+<div class="question"><b>7-masala.</b> 0,2 kg shar 0,8 m radiusli aylana bo‘ylab 6 m/s tezlikda harakatlanadi. Ip tarangligi faqat markazga intilma kuchni ta’minlasa, uni toping.<br><b>Formula:</b> T=mv²/R=0,2·36/0,8=9 N.<br><b>Javob:</b> 9 N.</div>
+<div class="question"><b>8-masala.</b> Aylanish chastotasi 2 Hz, radiusi 0,5 m bo‘lgan jismning chiziqli tezligini toping.<br><b>Formula:</b> v=2πRf=2π·0,5·2=2π≈6,28 m/s.<br><b>Javob:</b> 6,28 m/s.</div>
+</section>
+
+<section>
+<h2>Asosiy formulalar jadvali</h2><table><tr><th>Kattalik</th><th>Formula</th></tr><tr><td>Markazga intilma tezlanish</td><td>a=v²/R</td></tr><tr><td>Markazga intilma kuch</td><td>F=mv²/R</td></tr><tr><td>Burchak tezlik orqali kuch</td><td>F=mω²R</td></tr><tr><td>Chiziqli tezlik</td><td>v=ωR</td></tr><tr><td>Davr orqali tezlik</td><td>v=2πR/T</td></tr><tr><td>Chastota orqali tezlik</td><td>v=2πRf</td></tr></table>
+</section>
+
+<section id="test">
+<h2>Interaktiv test</h2><div id="quiz"></div><button onclick="checkQuiz()">Natijani tekshirish</button><p id="score" class="result"></p>
+</section>
+<section><h2>Darsni yakunlash — asosiy xulosalar</h2><ol><li>Aylana bo‘ylab harakatda tezlik vektori urinma bo‘ylab yo‘naladi.</li><li>Markazga intilma tezlanish va kuch aylana markaziga qaragan.</li><li>Markazga intilma kuch F=mv²/R formula bilan aniqlanadi.</li><li>Ip uzilganda shar urinma yo‘nalishda harakatlanadi.</li><li>Markazdan qochma kuch aylanuvchi sanoq sistemasidagi inersiya kuchidir.</li></ol><div class="note"><b>Uyga vazifa:</b> kundalik hayotdan markazga intilma kuchga 5 ta misol yozing, ulardan ikkitasining kuch vektorlarini chizing va bitta masala tuzing.</div></section>
+</main><footer>10-sinf Fizika | “Markazga intilma kuch” | Interaktiv HTML dars materiali</footer>
+<script>
+const qs=[
+['1. Markazga intilma tezlanish qaysi tomonga yo‘naladi?',['Urinma bo‘ylab','Markazdan tashqariga','Aylana markaziga','Tezlikka qarama-qarshi'],2],
+['2. Markazga intilma kuch formulasi qaysi?',['F=mv/R','F=mv²/R','F=mR/v','F=ma²'],1],
+['3. Aylana bo‘ylab harakatda tezlik vektori qayerga yo‘naladi?',['Markazga','Urinma bo‘ylab','Tashqariga','Radius bo‘ylab markazdan tashqariga'],1],
+['4. Ip uzilganda shar qanday yo‘nalishda ketadi?',['Markazga','Radial tashqariga','Urinma bo‘ylab','Darhol to‘xtaydi'],2],
+['5. Markazdan qochma kuch qaysi sistemada inersiya kuchi sifatida qaraladi?',['Faqat tinch sistemada','Aylanuvchi sanoq sistemasida','Faqat Yer markazida','Hech qayerda'],1],
+['6. m=2 kg, v=4 m/s, R=2 m. Kuch qancha?',['8 N','16 N','4 N','32 N'],1],
+['7. Markazga intilma kuch alohida yangi kuch turimi?',['Ha, har doim','Yo‘q, natijaviy radial kuch','Faqat magnit kuch','Faqat og‘irlik kuchi'],1],
+['8. Chiziqli tezlik va burchak tezlik bog‘lanishi?',['v=ω/R','v=ωR','v=R/ω','v=ω+R'],1]
+];
+const qbox=document.getElementById('quiz');
+qs.forEach((q,i)=>{let d=document.createElement('div');d.className='question';d.innerHTML='<b>'+q[0]+'</b>'+q[1].map((o,j)=>`<label style="display:block"><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('');qbox.appendChild(d)});
+function checkQuiz(){let score=0;qs.forEach((q,i)=>{let a=document.querySelector(`input[name="q${i}"]:checked`);if(a&&+a.value===q[2])score++});document.getElementById('score').textContent=`Natija: ${score} / ${qs.length}`}
+
+const orbitCanvas=document.getElementById('orbit'),octx=orbitCanvas.getContext('2d');let orbitRun=true,ot=0;
+function fit(c,ctx){c.width=c.clientWidth*devicePixelRatio;c.height=300*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+function arrow(ctx,x,y,x2,y2,color,label){let a=Math.atan2(y2-y,x2-x),L=11;ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x2,y2);ctx.stroke();ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-L*Math.cos(a-.5),y2-L*Math.sin(a-.5));ctx.lineTo(x2-L*Math.cos(a+.5),y2-L*Math.sin(a+.5));ctx.closePath();ctx.fill();ctx.font='bold 14px Arial';ctx.fillText(label,(x+x2)/2+4,(y+y2)/2-7)}
+function drawOrbit(){fit(orbitCanvas,octx);let w=orbitCanvas.clientWidth,h=300,cx=w/2,cy=h/2,R=+document.getElementById('radius').value, v=+document.getElementById('speed').value,m=+document.getElementById('mass').value;let x=cx+R*Math.cos(ot),y=cy+R*Math.sin(ot);octx.strokeStyle='#cbd5e1';octx.lineWidth=2;octx.beginPath();octx.arc(cx,cy,R,0,Math.PI*2);octx.stroke();octx.fillStyle='#1d4ed8';octx.beginPath();octx.arc(cx,cy,6,0,Math.PI*2);octx.fill();octx.fillStyle='#2563eb';octx.beginPath();octx.arc(x,y,13,0,Math.PI*2);octx.fill();arrow(octx,x,y,x-48*Math.sin(ot),y+48*Math.cos(ot),'#ef4444','v');arrow(octx,x,y,cx,cy,'#16a34a','Fm');octx.strokeStyle='#8b5cf6';octx.setLineDash([5,5]);octx.beginPath();octx.moveTo(cx,cy);octx.lineTo(x,y);octx.stroke();octx.setLineDash([]);octx.fillStyle='#334155';octx.font='14px Arial';octx.fillText('Markaz',cx+8,cy-10);document.getElementById('speedVal').textContent=v+' m/s';document.getElementById('radiusVal').textContent=(R/40).toFixed(1)+' m';document.getElementById('massVal').textContent=m+' kg';document.getElementById('orbitResult').textContent=`aₘ = ${(v*v/(R/40)).toFixed(2)} m/s²  |  Fₘ = ${(m*v*v/(R/40)).toFixed(2)} N`;if(orbitRun)ot+=v*.006;requestAnimationFrame(drawOrbit)}
+function toggleOrbit(){orbitRun=!orbitRun}function resetOrbit(){ot=0;orbitRun=true}
+document.getElementById('speed').addEventListener('input',()=>{});document.getElementById('radius').addEventListener('input',()=>{});document.getElementById('mass').addEventListener('input',()=>{});
+
+const ballCanvas=document.getElementById('ball'),bctx=ballCanvas.getContext('2d');let ballRun=true,bt=0,cut=false,px=0,py=0,pvx=0,pvy=0;
+function drawBall(){fit(ballCanvas,bctx);let w=ballCanvas.clientWidth,h=300,cx=w/2,cy=h/2,R=+document.getElementById('ballRadius').value,v=+document.getElementById('ballSpeed').value;let x,y;if(!cut){x=cx+R*Math.cos(bt);y=cy+R*Math.sin(bt);px=x;py=y;}else{x=px; y=py;}bctx.strokeStyle='#cbd5e1';bctx.lineWidth=2;bctx.beginPath();bctx.arc(cx,cy,R,0,Math.PI*2);bctx.stroke();bctx.fillStyle='#64748b';bctx.beginPath();bctx.arc(cx,cy,5,0,Math.PI*2);bctx.fill();if(!cut){bctx.strokeStyle='#8b5cf6';bctx.lineWidth=3;bctx.beginPath();bctx.moveTo(cx,cy);bctx.lineTo(x,y);bctx.stroke();arrow(bctx,x,y,cx,cy,'#16a34a','T / Fm');arrow(bctx,x,y,x-48*Math.sin(bt),y+48*Math.cos(bt),'#ef4444','v');}else{arrow(bctx,x,y,x+pvx*2,y+pvy*2,'#ef4444','v');if(ballRun){px+=pvx;py+=pvy;}}bctx.fillStyle='#2563eb';bctx.beginPath();bctx.arc(x,y,13,0,Math.PI*2);bctx.fill();document.getElementById('ballSpeedVal').textContent=v;document.getElementById('ballRadiusVal').textContent=R+' px';document.getElementById('ballResult').textContent=cut?'Ip uzildi: shar urinma yo‘nalishda harakatlanadi.':`Markazga intilma kuch markaz tomon yo‘nalgan. Tezlik v=${v} (shartli birlik).`;if(ballRun&&!cut)bt+=v*.012;requestAnimationFrame(drawBall)}
+function toggleBall(){ballRun=!ballRun}function cutString(){if(!cut){let v=+document.getElementById('ballSpeed').value;pvx=-Math.sin(bt)*v*.7;pvy=Math.cos(bt)*v*.7;cut=true;ballRun=true}}function resetBall(){cut=false;bt=0;ballRun=true}
+drawOrbit();drawBall();
+</script></body></html>
