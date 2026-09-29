@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fizikaning tadqiqot metodlari</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f1f5fb;--card:#fff;--tx:#1e2a3a;--mu:#5b6b80;--pr:#4f46e5;--ac:#f59e0b;--ok:#10b981;--bd:#dde4ef}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111827;--card:#1f2937;--tx:#e8edf5;--mu:#9aa9bd;--bd:#33415a}}
+:root[data-theme="dark"]{--bg:#111827;--card:#1f2937;--tx:#e8edf5;--mu:#9aa9bd;--bd:#33415a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5}
+header{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;padding:22px 16px;text-align:center}
+header h1{margin:0;font-size:1.5rem}header p{margin:6px 0 0;opacity:.9}
+nav{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+nav a{padding:6px 12px;border-radius:99px;background:var(--card);border:1px solid var(--bd);color:var(--tx);text-decoration:none;font-size:.9rem}
+main{max-width:900px;margin:0 auto;padding:0 12px 40px}
+section{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+h2{margin:0 0 6px;color:var(--pr)}p.i{color:var(--mu);margin:0 0 12px}
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 12px;border-radius:10px}
+button.p{background:var(--pr);color:#fff;border-color:var(--pr)}button.on{background:var(--ac);color:#000;border-color:var(--ac)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;align-items:center}
+input[type=range]{flex:1;min-width:140px;accent-color:var(--pr)}
+canvas{width:100%;max-width:100%;background:var(--bg);border-radius:12px;border:1px solid var(--bd)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.br{padding:10px;border-radius:12px;border:2px solid var(--bd);text-align:center;opacity:.5;transition:.3s}
+.br.on{opacity:1;transform:scale(1.05);border-color:var(--pr);background:rgba(79,70,229,.12);animation:pl 1s infinite alternate}
+@keyframes pl{to{box-shadow:0 0 14px var(--pr)}}
+.box{background:var(--bg);border-radius:12px;padding:10px;margin:8px 0}
+.f{font-family:Georgia,serif;font-style:italic;background:rgba(245,158,11,.15);padding:6px 10px;border-radius:8px;display:inline-block;margin:3px 0}
+.st{flex:1;min-width:90px;text-align:center;padding:8px;border-radius:10px;background:var(--bg);border:2px solid var(--bd);font-size:.9rem}
+.st.on{border-color:var(--ok);background:rgba(16,185,129,.15);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:.9rem}td,th{border-bottom:1px solid var(--bd);padding:4px 6px;text-align:center}
+.big{font-size:1.15rem;font-weight:700;color:var(--ok)}
+</style></head><body>
+<header><h1>⚛️ Fizikaning tadqiqot metodlari</h1><p>10-sinf · Mexanika · 4 ta interaktiv simulyatsiya</p></header>
+<nav><a href="#s1">1. Fizika va tabiat</a><a href="#s2">2. Ilmiy metod</a><a href="#s3">3. Model</a><a href="#s4">4. O'lchash</a></nav>
+<main>
+
+<section id="s1"><h2>1. Fizika va uning tabiatni o'rganishdagi o'rni</h2>
+<p class="i">Kundalik hodisani tanlang — u qaysi fizika bo'limiga tegishli ekanini ko'rasiz. Bitta hodisa bir nechta bo'limga tegishli bo'lishi mumkin!</p>
+<div class="row" id="ph"></div>
+<div class="grid" id="br"></div>
+<div class="box" id="ex">👆 Hodisani tanlang.</div></section>
+
+<section id="s2"><h2>2. Ilmiy metod: kuzatish → gipoteza → eksperiment → xulosa</h2>
+<p class="i">Mayatnik misolida ilmiy metodni qadam-baqadam bosib o'ting. Uzunlikni o'zgartirib ko'ring.</p>
+<div class="row" id="steps"></div>
+<div class="box" id="stx"></div>
+<div class="row"><label>Uzunlik L: <b id="Lv">1.0</b> m</label><input type="range" id="L" min="0.2" max="2.5" step="0.1" value="1"></div>
+<canvas id="c2" width="800" height="300"></canvas>
+<div class="row"><span>Davr: <span class="f">T = 2π√(L/g)</span> = <b id="Tv"></b> s</span> · <span>Chastota: <b id="Fv"></b> Hz</span>
+<button class="p" id="rec">📝 Tajriba natijasini yozish</button><button id="clr">Tozalash</button></div>
+<canvas id="c2b" width="800" height="240"></canvas>
+<p class="i" style="margin-top:6px">Grafik: nuqtalar — sizning tajribangiz, chiziq — nazariya (T–L).</p></section>
+
+<section id="s3"><h2>3. Moddiy nuqta va ideallashtirilgan model</h2>
+<p class="i">Jism o'lchami u bosib o'tgan masofadan juda kichik bo'lsa, uni moddiy nuqta deb olish mumkin. Masofani slayder bilan o'zgartiring.</p>
+<div class="row"><button class="on" id="o1">🚗 Mashina (4 m)</button><button id="o2">🌍 Yer (12 742 km)</button></div>
+<div class="row"><label>Bosib o'tilgan masofa: <b id="Dv"></b></label><input type="range" id="D" min="0" max="100" value="20"></div>
+<canvas id="c3" width="800" height="240"></canvas>
+<div class="box" id="v3"></div></section>
+
+<section id="s4"><h2>4. Fizik kattaliklar, o'lchash va xatoliklar</h2>
+<p class="i">Asbobni tanlang va bir necha marta o'lchang. Har gal natija biroz farq qiladi — bu tasodifiy xatolik.</p>
+<div class="row" id="ins"></div>
+<div class="row"><button class="p" id="mz">📏 O'lchash</button><button id="mz5">×5</button><button id="rs">Tozalash</button></div>
+<canvas id="c4" width="800" height="140"></canvas>
+<div class="box" id="tb">Hali o'lchanmagan.</div>
+<div class="box">
+<div>O'rtacha: <span class="f">x̄ = (x₁+x₂+…+xₙ) / n</span></div>
+<div>Absolyut xato: <span class="f">Δx = (|x₁−x̄|+…+|xₙ−x̄|) / n</span></div>
+<div>Nisbiy xato: <span class="f">ε = Δx / x̄ · 100%</span></div>
+<div id="res" class="big"></div></div></section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+/* ---- 1 ---- */
+const B={mex:['⚙️ Mexanika','#4f46e5'],opt:['🔍 Optika','#f59e0b'],ter:['🔥 Termodinamika','#ef4444'],el:['⚡ Elektr','#0ea5e9'],ak:['🔊 Akustika','#10b981'],at:['☢️ Atom fizikasi','#a855f7']};
+const P=[['🌧 Yomg\'ir tomchisi tushishi',['mex'],'Tomchi og\'irlik kuchi ta\'sirida tushadi — bu mexanika.'],
+['🌈 Kamalak',['opt'],'Quyosh nuri tomchilarda sinib, ranglarga ajraladi — optika.'],
+['⛈ Chaqmoq va momaqaldiroq',['el','ak','opt'],'Elektr zaryadlar razryadi (elektr), yorug\'lik (optika), gumburlash (akustika).'],
+['☕ Choynak qaynashi',['ter'],'Suv isiydi va bug\'ga aylanadi — termodinamika.'],
+['🚗 Mashina harakati',['mex','ter'],'Harakat — mexanika; dvigatel yonilg\'i issiqligini ishga aylantiradi — termodinamika.'],
+['🎸 Gitara tovushi',['ak','mex'],'Tor tebranadi (mexanika), tovush to\'lqini tarqaladi (akustika).'],
+['💡 Lampochka',['el','opt','ter'],'Tok o\'tadi (elektr), qiziydi (termodinamika), yorug\'lik beradi (optika).'],
+['☀️ Quyosh nuri energiyasi',['at','opt','ter'],'Quyoshda yadro reaksiyalari kechadi (atom), nur tarqaladi (optika).']];
+P.forEach((p,i)=>{const b=document.createElement('button');b.textContent=p[0];b.onclick=()=>{[...$('ph').children].forEach(x=>x.classList.remove('on'));b.classList.add('on');
+document.querySelectorAll('.br').forEach(e=>e.classList.toggle('on',p[1].includes(e.dataset.k)));$('ex').textContent=p[2]};$('ph').appendChild(b)});
+for(const k in B){const d=document.createElement('div');d.className='br';d.dataset.k=k;d.textContent=B[k][0];$('br').appendChild(d)}
+/* ---- 2 ---- */
+const g=9.81,S=[["👀 Kuzatish","Ip uchidagi yuk tebranmoqda. Ba'zi mayatniklar sekin, ba'zilari tez tebranadi. Savol: nima tebranish tezligini belgilaydi?"],
+["💡 Gipoteza","Taxmin: ip uzun bo'lsa, tebranish davri T ham kattaroq bo'ladi."],
+["🧪 Eksperiment","L ni slayder bilan o'zgartiring va «Tajriba natijasini yozish» tugmasini bosing. Kamida 5 ta nuqta oling."],
+["✅ Xulosa","Davr faqat uzunlikka bog'liq: T = 2π√(L/g). L 4 marta oshsa, T 2 marta oshadi. Gipoteza tasdiqlandi!"]];
+let st=0,pts=[];
+S.forEach((s,i)=>{const d=document.createElement('div');d.className='st';d.textContent=s[0];d.onclick=()=>{st=i;up()};$('steps').appendChild(d)});
+const nb=document.createElement('button');nb.className='p';nb.textContent='Keyingi ▶';nb.onclick=()=>{st=(st+1)%4;up()};$('steps').appendChild(nb);
+function up(){[...$('steps').children].forEach((e,i)=>e.classList.toggle('on',i==st));$('stx').textContent=S[st][1]}
+up();
+const T=L=>2*Math.PI*Math.sqrt(L/g);
+function upv(){const L=+$('L').value;$('Lv').textContent=L.toFixed(1);$('Tv').textContent=T(L).toFixed(2);$('Fv').textContent=(1/T(L)).toFixed(2)}
+$('L').oninput=upv;upv();
+$('rec').onclick=()=>{const L=+$('L').value;pts.push([L,T(L)*(1+(Math.random()-.5)*.03)]);st=Math.max(st,2);up()};
+$('clr').onclick=()=>{pts=[]};
+const c2=$('c2').getContext('2d'),c2b=$('c2b').getContext('2d');
+function frame(t){const L=+$('L').value,w=$('c2').width,h=$('c2').height;c2.clearRect(0,0,w,h);
+const th=0.4*Math.cos(2*Math.PI*t/1000/T(L)),px=L*100,ox=w/2,oy=20,x=ox+px*Math.sin(th),y=oy+px*Math.cos(th);
+c2.fillStyle='#888';c2.fillRect(ox-60,oy-8,120,8);c2.strokeStyle='#888';c2.lineWidth=2;c2.beginPath();c2.moveTo(ox,oy);c2.lineTo(x,y);c2.stroke();
+c2.fillStyle='#4f46e5';c2.beginPath();c2.arc(x,y,16,0,7);c2.fill();
+c2.fillStyle='#888';c2.font='16px sans-serif';c2.fillText('L = '+L.toFixed(1)+' m',ox+10,oy+px/2);
+const W=$('c2b').width,H=$('c2b').height;c2b.clearRect(0,0,W,H);c2b.strokeStyle='#888';c2b.beginPath();c2b.moveTo(40,10);c2b.lineTo(40,H-25);c2b.lineTo(W-10,H-25);c2b.stroke();
+const X=l=>40+(l-0.2)/2.4*(W-60),Y=v=>H-25-v/3.5*(H-40);
+c2b.fillStyle='#888';c2b.font='13px sans-serif';c2b.fillText('T (s)',4,16);c2b.fillText('L (m)',W-45,H-8);
+c2b.strokeStyle='#f59e0b';c2b.lineWidth=2;c2b.beginPath();for(let l=0.2;l<=2.5;l+=.05){l==0.2?c2b.moveTo(X(l),Y(T(l))):c2b.lineTo(X(l),Y(T(l)))}c2b.stroke();
+c2b.fillStyle='#4f46e5';pts.forEach(p=>{c2b.beginPath();c2b.arc(X(p[0]),Y(p[1]),5,0,7);c2b.fill()});
+requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+/* ---- 3 ---- */
+let ob=0;const OB=[{n:'Mashina',s:4,u:'m',R:1,path:[5,1e6]},{n:'Yer',s:1.2742e7,u:'m',R:1,path:[1e7,1e12]}];
+function fmt(m){return m>=1e9?(m/1e9).toPrecision(3)+' mln km':m>=1e3?(m/1e3).toPrecision(3)+' km':m.toPrecision(3)+' m'}
+$('o1').onclick=()=>{ob=0;$('o1').className='on';$('o2').className='';d3()};$('o2').onclick=()=>{ob=1;$('o2').className='on';$('o1').className='';d3()};
+function d3(){const o=OB[ob],a=Math.log10(o.path[0]),b=Math.log10(o.path[1]);const D=Math.pow(10,a+(b-a)*$('D').value/100);
+$('Dv').textContent=fmt(D);const r=o.s/D,w=$('c3').width,c=$('c3').getContext('2d');c.clearRect(0,0,w,240);
+c.fillStyle='#888';c.font='15px sans-serif';c.fillText('REAL HODISA',20,22);c.fillText('MODEL (moddiy nuqta)',w/2+20,22);
+c.strokeStyle='#888';c.beginPath();c.moveTo(w/2,0);c.lineTo(w/2,240);c.stroke();
+const pw=w/2-60,sz=Math.max(r*pw,3);
+c.strokeStyle='#5b6b80';c.setLineDash([6,5]);c.beginPath();c.moveTo(30,150);c.lineTo(30+pw,150);c.moveTo(w/2+30,150);c.lineTo(w/2+30+pw,150);c.stroke();c.setLineDash([]);
+c.fillStyle=ob?'#0ea5e9':'#ef4444';const y=150-Math.min(sz,110)/2;
+if(ob){c.beginPath();c.arc(30+sz/2,150,Math.min(sz,110)/2,0,7);c.fill()}else{c.fillRect(30,150-Math.min(sz*.5,55),Math.min(sz,110),Math.min(sz*.5,55));}
+c.fillStyle='#10b981';c.beginPath();c.arc(w/2+30+pw/2,150,6,0,7);c.fill();c.fillStyle='#888';c.fillText('▲ '+(ob?'Yer':'mashina')+' = nuqta',w/2+30+pw/2-60,180);
+c.fillText('masofa = '+fmt(D),30+pw/2-50,205);
+const ok=r<0.01;$('v3').innerHTML='O\'lcham / masofa = <b>'+r.toExponential(1)+'</b><br>'+(ok?'✅ <b>Moddiy nuqta deb olish mumkin</b>: jism o\'lchami masofadan juda kichik, shakli ahamiyatsiz.':'❌ <b>Moddiy nuqta emas</b>: jism o\'lchami masofa bilan solishtirarli, uning shakli va o\'lchamini hisobga olish kerak.')+(ob?'<br>Yerning Quyosh atrofida aylanishida masofa 150 mln km — Yer nuqta. Lekin Yer ichidagi harakat (masalan, sutkalik aylanish) uchun nuqta emas.':'')}
+$('D').oninput=d3;d3();
+/* ---- 4 ---- */
+const I=[['📏 Lineyka',12.30,0.1,0.06,'sm'],['⏱ Sekundomer',5.00,0.01,0.15,'s'],['⚖️ Tarozi',250,1,2.5,'g']];
+let ii=0,xs=[];
+I.forEach((x,i)=>{const b=document.createElement('button');b.textContent=x[0];b.onclick=()=>{ii=i;xs=[];[...$('ins').children].forEach((e,j)=>e.classList.toggle('on',j==i));d4()};$('ins').appendChild(b)});$('ins').children[0].classList.add('on');
+function rn(){return (Math.random()+Math.random()+Math.random()-1.5)*2}
+function one(){const a=I[ii];const v=a[1]+rn()*a[3]*1.6;const dec=a[2]<1?(a[2]<.1?2:1):0;xs.push(+(Math.round(v/a[2])*a[2]).toFixed(dec))}
+$('mz').onclick=()=>{one();d4()};$('mz5').onclick=()=>{for(let i=0;i<5;i++)one();d4()};$('rs').onclick=()=>{xs=[];d4()};
+function d4(){const a=I[ii],c=$('c4').getContext('2d'),w=$('c4').width;c.clearRect(0,0,w,140);
+const lo=a[1]-a[3]*4,hi=a[1]+a[3]*4,X=v=>30+(v-lo)/(hi-lo)*(w-60);
+c.strokeStyle='#888';c.beginPath();c.moveTo(30,100);c.lineTo(w-30,100);c.stroke();c.fillStyle='#888';c.font='13px sans-serif';
+for(let i=0;i<=8;i++){const v=lo+(hi-lo)*i/8;c.fillText(v.toFixed(a[2]<.1?2:a[2]<1?1:0),X(v)-14,120)}
+xs.forEach((v,i)=>{c.fillStyle='rgba(79,70,229,.6)';c.beginPath();c.arc(X(v),90-(xs.slice(0,i).filter(q=>q==v).length)*14,7,0,7);c.fill()});
+if(!xs.length){$('tb').textContent='Hali o\'lchanmagan.';$('res').textContent='';return}
+const n=xs.length,m=xs.reduce((p,q)=>p+q,0)/n,da=xs.map(q=>Math.abs(q-m)),D=da.reduce((p,q)=>p+q,0)/n,e=D/m*100;
+c.strokeStyle='#10b981';c.lineWidth=3;c.beginPath();c.moveTo(X(m),40);c.lineTo(X(m),100);c.stroke();c.lineWidth=1;
+const p=a[2]<.1?3:a[2]<1?2:1;
+$('tb').innerHTML='<table><tr><th>№</th><th>xᵢ ('+a[4]+')</th><th>|xᵢ−x̄|</th></tr>'+xs.map((q,i)=>'<tr><td>'+(i+1)+'</td><td>'+q+'</td><td>'+da[i].toFixed(3)+'</td></tr>').join('')+'</table>';
+$('res').innerHTML='x̄ = '+m.toFixed(3)+' '+a[4]+'<br>Δx = '+D.toFixed(3)+' '+a[4]+'<br>ε = '+e.toFixed(2)+' %<br><small style="font-weight:400;color:var(--mu)">Natija: x = ('+m.toFixed(2)+' ± '+D.toFixed(2)+') '+a[4]+' &nbsp;| n = '+n+'. Ko\'proq o\'lchasangiz, o\'rtacha qiymat aniqroq bo\'ladi.</small>'}
+d4();
+</script></body></html>
